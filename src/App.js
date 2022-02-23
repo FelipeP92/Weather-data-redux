@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 import React, { Component } from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import { createStore } from "redux",
 import { Grid, Row, Col } from 'react-flexbox-grid';
 import Paper from 'material-ui/Paper';
 import AppBar from 'material-ui/AppBar';
@@ -18,6 +19,7 @@ const cities = [
 ];
 
 
+const store = createStore()
 
 class App extends Component {
 
@@ -30,7 +32,7 @@ class App extends Component {
     this.setState({ city });
     console.log(`handleSelectedLocation ${city}`);
   }
-  
+
   render() {
     const { city } = this.state;
     return (
@@ -44,14 +46,14 @@ class App extends Component {
           </Row>
           <Row>
             <Col xs={12} md={6}>
-              <LocationList cities={cities} 
-              onSelectedLocation={this.handleSelectedLocation} ></LocationList>
+              <LocationList cities={cities}
+                onSelectedLocation={this.handleSelectedLocation} ></LocationList>
             </Col>
             <Col xs={12} md={6}>
               <Paper zDepth={4}>
                 <div className='detail'>
                   {
-                    city && 
+                    city &&
                     <ForecastExtended city={city}></ForecastExtended>
                   }
 
